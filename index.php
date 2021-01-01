@@ -79,7 +79,7 @@
                         ?>
                         <div class="teacher-box">
                             <div class="teacher-img">
-                                <img src="images/menu-pizza.jpg" alt="Chicke Hawain Pizza"
+                                <img src="images/teacher_icon.png" alt="iconS"
                                      class="img-responsive img-curve">
                             </div>
 
