@@ -84,7 +84,7 @@ if (isset($_POST["submit"])) {
     if ($res == TRUE) {
         $_SESSION["register"] = "<div class='success'>Registered successfully</div>";
         $_SESSION["username"] = $username;
-        header("location:" . SITEURL . "teacher/update-teacher.php");
+        header("location:" . SITEURL . "teacher/manage-teacher.php");
 
     } else {
         $_SESSION["register"] = "<div class='error'>Error while registering</div>";
