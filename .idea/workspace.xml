@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/images/search-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/book-teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/bg.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teacher/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials-front/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/partials-front/footer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +61,7 @@
       <workItem from="1609524534653" duration="13236000" />
       <workItem from="1609538560408" duration="3238000" />
       <workItem from="1609576120270" duration="6255000" />
+      <workItem from="1609584768092" duration="2923000" />
     </task>
     <servers />
   </component>
