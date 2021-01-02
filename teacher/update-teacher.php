@@ -88,12 +88,10 @@ if (isset($_POST["submit"])) {
 
     if ($res == TRUE) {
         $_SESSION["update"] = "<div class='success'>Updated successfully</div>";
-
     } else {
         $_SESSION["update"] = "<div class='error'>Error while updating</div>";
     }
-    header("location:" . SITEURL . "teacher/update-teacher.php");
-
+    header("location:" . SITEURL . "teacher/manage-teacher.php");
 }
 ?>
 

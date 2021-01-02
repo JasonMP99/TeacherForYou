@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/teacher/delete-booking.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/book-teacher.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teacher/bookings.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/bookings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teacher/delete-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/delete-teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="add-delete-button-for-bookings" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,7 +55,7 @@
       <updated>1609524533550</updated>
       <workItem from="1609524534653" duration="13236000" />
       <workItem from="1609538560408" duration="3238000" />
-      <workItem from="1609576120270" duration="5263000" />
+      <workItem from="1609576120270" duration="5745000" />
     </task>
     <servers />
   </component>
