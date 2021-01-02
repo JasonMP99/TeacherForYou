@@ -9,7 +9,12 @@
         <?php
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
-        } ?>
+        }
+        if (isset($_SESSION["delete-booking"])) {
+            echo $_SESSION["delete-booking"];
+            unset($_SESSION["delete-booking"]); //removes message
+        }
+        ?>
         <table class="tbl-full">
             <tr>
                 <th>Booking id</th>
@@ -19,6 +24,7 @@
                 <th>Curse</th>
                 <th>Date</th>
                 <th>Hours</th>
+                <th>Action</th>
             </tr>
             <?php
             $sql = "SELECT * FROM bookings WHERE teacher_id=$id";
@@ -31,6 +37,7 @@
                     while ($rows = mysqli_fetch_assoc($res)) {
                         //get data
                         $id = $rows["id"];
+                        $teacher_id = $rows["teacher_id"];
                         $full_name = $rows["full_name"];
                         $email = $rows["email"];
                         $phone = $rows["phone"];
@@ -48,6 +55,10 @@
                             <td><?php echo $curse; ?></td>
                             <td><?php echo $date; ?></td>
                             <td><?php echo $hours; ?></td>
+                            <td>
+                                <a href="<?php echo SITEURL; ?>teacher/delete-booking.php?id=<?php echo $id; ?>"
+                                   class="btn-danger">Delete Booking</a>
+                            </td>
                         </tr>
                         <?php
                     }
