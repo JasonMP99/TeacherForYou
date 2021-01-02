@@ -51,15 +51,18 @@
                                     echo " ";
                                     echo $lastname; ?></h4>
                                 <p class="teacher-payment"><?php echo $payment; ?>/hour</p>
+                                Courses:
                                 <p class="teacher-curses">
                                     <?php echo $courses; ?>
                                 </p>
+                                Email:
                                 <p class="teacher-curses"><?php echo $email; ?></p>
+                                Address:
                                 <p class="teacher-curses"><?php echo $address; ?></p>
                                 <br>
 
                                 <a href="<?php echo SITEURL; ?>book-teacher.php?id=<?php echo $id; ?>"
-                                   class="btn-primary">Book</a>
+                                   class="btn-secondary">Book</a>
                             </div>
                         </div>
                         <?php

@@ -49,12 +49,12 @@
 }
 
 a {
-    color: #ff6b81;
+    color: #4834d4;
     text-decoration: none;
 }
 
 a:hover {
-    color: #ff4757;
+    color:#130f40;
 }
 
 .btn {
@@ -65,16 +65,28 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: #ff6b81;
+    background-color:  #4834d4;
     color: white;
     cursor: pointer;
 }
 
 .btn-primary:hover {
     color: white;
-    background-color: #ff4757;
+    background-color: #130f40;
 }
 
+.btn-secondary{
+    background-color:  #4834d4;
+    padding:2%;
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-secondary:hover{
+    color: white;
+    background-color:  #130f40;
+}
 h2 {
     color: #2f3542;
     font-size: 2rem;

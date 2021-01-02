@@ -9,41 +9,6 @@
 
         </div>
     </section>
-    <!--        search Section Ends Here -->
-
-    <!--     CAtegories Section Starts Here -->
-    <!--    <section class="categories">-->
-    <!--        <div class="container">-->
-    <!--            <h2 class="text-center">Explore Foods</h2>-->
-    <!---->
-    <!--            <a href="category-foods.html">-->
-    <!--                <div class="box-3 float-container">-->
-    <!--                    <img src="images/pizza.jpg" alt="Pizza" class="img-responsive img-curve">-->
-    <!---->
-    <!--                    <h3 class="float-text text-white">Pizza</h3>-->
-    <!--                </div>-->
-    <!--            </a>-->
-    <!---->
-    <!--            <a href="#">-->
-    <!--                <div class="box-3 float-container">-->
-    <!--                    <img src="images/burger.jpg" alt="Burger" class="img-responsive img-curve">-->
-    <!---->
-    <!--                    <h3 class="float-text text-white">Burger</h3>-->
-    <!--                </div>-->
-    <!--            </a>-->
-    <!---->
-    <!--            <a href="#">-->
-    <!--                <div class="box-3 float-container">-->
-    <!--                    <img src="images/momo.jpg" alt="Momo" class="img-responsive img-curve">-->
-    <!---->
-    <!--                    <h3 class="float-text text-white">Momo</h3>-->
-    <!--                </div>-->
-    <!--            </a>-->
-    <!---->
-    <!--            <div class="clearfix"></div>-->
-    <!--        </div>-->
-    <!--    </section>-->
-    <!-- Categories Section Ends Here -->
 
     <!-- teacher Section Starts Here -->
     <section class="teacher">
@@ -87,15 +52,18 @@
                                     echo " ";
                                     echo $lastname; ?></h4>
                                 <p class="teacher-payment"><?php echo $payment; ?>/hour</p>
+                                Courses:
                                 <p class="teacher-curses">
                                     <?php echo $courses; ?>
                                 </p>
+                                Email:
                                 <p class="teacher-curses"><?php echo $email; ?></p>
+                                Address:
                                 <p class="teacher-curses"><?php echo $address; ?></p>
                                 <br>
 
                                 <a href="<?php echo SITEURL; ?>book-teacher.php?id=<?php echo $id; ?>"
-                                   class="btn-primary">Book</a>
+                                   class="btn-secondary">Book</a>
                             </div>
                         </div>
                         <?php
