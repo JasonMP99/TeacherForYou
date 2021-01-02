@@ -33,7 +33,9 @@
         Date: <br>
         <input type="date" name="date" placeholder="Enter date" required>
         <br> <br>
-        <input type="submit" name="submit" value="Book" class="btn-primary" required>
+        <a href="mailto:kkoutsilis@gmail.com? subject=Booking&body=Test"> <input type="submit" name="submit"
+                                                                                 value="Book" class="btn-primary"
+                                                                                 required> </a>
 
     </form>
 </div>
