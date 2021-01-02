@@ -1,9 +1,9 @@
-<?php include("../config/constants.php") ?>
+<?php include("partials-front/menu.php") ?>
 
 <html>
 <head>
     <title>Register -TeacherForYou</title>
-    <link rel="stylesheet" href="../css/teacher.css">
+    <link rel="stylesheet" href="css/teacher.css">
 </head>
 <body>
 <div class="register">
@@ -49,7 +49,7 @@
     </form>
 </div>
 
-<?php include("partials/footer.php"); ?>
+<?php include("partials-front/footer.php"); ?>
 
 <?php
 //process the value from from and save it in database
@@ -88,7 +88,7 @@ if (isset($_POST["submit"])) {
 
     } else {
         $_SESSION["register"] = "<div class='error'>Error while registering</div>";
-        header("location:" . SITEURL . "teacher/register.php");
+        header("location:" . SITEURL . "register.php");
     }
 }
 ?>

@@ -1,9 +1,9 @@
-<?php include("../config/constants.php") ?>
+<?php include("partials-front/menu.php") ?>
 
     <html>
     <head>
         <title>Login -TeacherForYou</title>
-        <link rel="stylesheet" href="../css/teacher.css">
+        <link rel="stylesheet" href="css/teacher.css">
     </head>
 <body>
     <div class="login">
@@ -36,7 +36,7 @@
             <br>
         </form>
     </div>
-<?php include("partials/footer.php"); ?>
+<?php include("partials-front/footer.php"); ?>
 <?php
 if (isset($_POST["submit"])) {
     $username = $_POST["username"];

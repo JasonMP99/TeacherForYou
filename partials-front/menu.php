@@ -27,10 +27,10 @@
                     <a href="index.php">Home</a>
                 </li>
                 <li>
-                    <a href="teacher/login.php">Login</a>
+                    <a href="login.php">Login</a>
                 </li>
                 <li>
-                    <a href="teacher/register.php">Register</a>
+                    <a href="register.php">Register</a>
                 </li>
                 <li>
                     <a href="#">Contact</a>

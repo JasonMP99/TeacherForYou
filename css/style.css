@@ -135,7 +135,11 @@ fieldset {
     padding: 1%;
     font-weight: bold;
 }
-
+.menu ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #4834d4;
+}
 
 /* CSS for Food SEarch Section */
 
