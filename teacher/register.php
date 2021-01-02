@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
     $username = $_POST["username"];
     $password = md5($_POST["password"]); // password encryption with md5
     $email = $_POST["email"];
-    $curses = $_POST["curses"];
+    $courses = $_POST["courses"];
     $payment = $_POST["payment"];
     $address = $_POST["address"];
 
@@ -73,7 +73,7 @@ if (isset($_POST["submit"])) {
             username='$username',
             password='$password',
             email='$email',
-            curses='$curses',
+            courses='$courses',
             payment=$payment,
             address='$address'
             ";

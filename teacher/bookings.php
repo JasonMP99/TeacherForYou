@@ -41,7 +41,7 @@
                         $full_name = $rows["full_name"];
                         $email = $rows["email"];
                         $phone = $rows["phone"];
-                        $curse = $rows["curse"];
+                        $course = $rows["course"];
                         $date = $rows["date"];
                         $hours = $rows["hours"];
 
@@ -52,7 +52,7 @@
                             <td><?php echo $full_name; ?></td>
                             <td><?php echo $email; ?></td>
                             <td><?php echo $phone; ?></td>
-                            <td><?php echo $curse; ?></td>
+                            <td><?php echo $course; ?></td>
                             <td><?php echo $date; ?></td>
                             <td><?php echo $hours; ?></td>
                             <td>
