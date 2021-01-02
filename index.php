@@ -71,7 +71,7 @@
                         $firstname = $rows["firstname"];
                         $lastname = $rows["lastname"];
                         $email = $rows["email"];
-                        $curses = $rows["curses"];
+                        $courses = $rows["courses"];
                         $payment = $rows["payment"];
                         $address = $rows["address"];
 
@@ -89,7 +89,7 @@
                                     echo $lastname; ?></h4>
                                 <p class="teacher-payment"><?php echo $payment; ?>/hour</p>
                                 <p class="teacher-curses">
-                                    <?php echo $curses; ?>
+                                    <?php echo $courses; ?>
                                 </p>
                                 <p class="teacher-curses"><?php echo $email; ?></p>
                                 <p class="teacher-curses"><?php echo $address; ?></p>

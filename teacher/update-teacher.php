@@ -20,7 +20,7 @@
                     $lastname = $row["lastname"];
                     $username = $row["username"];
                     $email = $row["email"];
-                    $curses = $row["curses"];
+                    $courses = $row["courses"];
                     $payment = $row["payment"];
                     $address = $row["address"];
 
@@ -46,7 +46,7 @@
                 <input type="email" name="email" placeholder="<?php echo $email; ?>" required>
                 <br> <br>
                 Courses: <br>
-                <input type="text" name="curses" placeholder="<?php echo $curses; ?>" required>
+                <input type="text" name="courses" placeholder="<?php echo $courses; ?>" required>
                 <br> <br>
                 Payment: <br>
                 <input type="number" name="payment" placeholder="<?php echo $payment; ?>" required>
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
     $lastname = $_POST["lastname"];
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $curses = $_POST["curses"];
+    $courses = $_POST["courses"];
     $payment = $_POST["payment"];
     $address = $_POST["address"];
 
@@ -79,7 +79,7 @@ if (isset($_POST["submit"])) {
             lastname= '$lastname',
             username='$username',
             email='$email',
-            curses='$curses',
+            courses='$courses',
             payment=$payment,
             address='$address'
             WHERE id ='$id'";

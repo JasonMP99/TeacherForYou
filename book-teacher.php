@@ -25,7 +25,7 @@
         <input type="text" name="phone" placeholder="Enter phone number" required>
         <br> <br>
         Course: <br>
-        <input type="text" name="curse" placeholder="Enter curse" required>
+        <input type="text" name="course" placeholder="Enter curse" required>
         <br> <br>
         Hours: <br>
         <input type="number" name="hours" placeholder="Enter hours" required>
@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
     $full_name = $_POST["full_name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
-    $curse = $_POST["curse"];
+    $course = $_POST["course"];
     $date = $_POST["date"];
     $hours = $_POST["hours"];
 
@@ -61,7 +61,7 @@ if (isset($_POST["submit"])) {
             full_name='$full_name',
             email='$email',
             phone=$phone,
-            curse='$curse',
+            course='$course',
             date='$date',
             hours=$hours
             ";
