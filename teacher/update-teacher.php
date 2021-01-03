@@ -129,6 +129,11 @@
                             <div class="d-flex justify-content-center mt-3 update_container">
                                 <button type="submit" name="submit" id="update" class="btn update_btn">Update</button>
                             </div>
+                            <?php
+                            if (isset($_SESSION["username-exists"])) {
+                                echo $_SESSION["username-exists"];
+                                unset($_SESSION["username-exists"]); //removes message
+                            } ?>
                     </form>
                 </div>
             </div>
@@ -141,6 +146,18 @@ if (isset($_POST["submit"])) {
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $username = $_POST["username"];
+
+    //check if username exists
+    $sql_username = "SELECT * FROM teacher WHERE username='$username'";
+    $res_username = mysqli_query($conn, $sql_username) or die(mysqli_error($conn));
+    if ($res_username == TRUE) {
+        $count = mysqli_num_rows($res_username);
+        if ($count > 0) {
+            $_SESSION["username-exists"] = "<div class='error text-center'>Username already exists</div>";
+            echo("<script>location.href = '" . SITEURL . "teacher/update-teacher.php?id=$id';</script>");
+            die();
+        }
+    }
     $email = $_POST["email"];
     $courses = $_POST["courses"];
     $payment = $_POST["payment"];
