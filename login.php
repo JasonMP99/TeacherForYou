@@ -8,8 +8,11 @@
         <title>Login - TeacherForYou</title>
 
         <!-- Link our CSS file -->
-        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+              crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/RegistrationLoginStyle.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
@@ -32,56 +35,60 @@
     </section>
     <!-- Navbar Section Ends Here -->
 
-<div class="login">
+    <div class="login">
 
-    <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
 
-            <div class="user_card">
+                <div class="user_card">
 
-                <div class="d-flex justify-content-center">
-                    <div class="brand_logo_container">
-                        <img src="images/logo.jpg" class="brand_logo" alt="Teachers For You logo">
+                    <div class="d-flex justify-content-center">
+                        <div class="brand_logo_container">
+                            <img src="images/logo.jpg" class="brand_logo" alt="Teachers For You logo">
+                        </div>
                     </div>
-                </div>
 
-                <div class="d-flex justify-content-center form_container">
+                    <div class="d-flex justify-content-center form_container">
 
-                    <?php
-                    if (isset($_SESSION["login"])) {
-                        echo $_SESSION["login"];
-                        unset($_SESSION["login"]); //removes message
-                    }
-                    if (isset($_SESSION["no-login"])) {
-                        echo $_SESSION["no-login"];
-                        unset($_SESSION["no-login"]); //removes message
-                    } ?>
 
-                    <!-- login form starts here -->
-                    <form method="post" action="login.php">
-                        <div class="input-group mb-1">
+                        <!-- login form starts here -->
+                        <form method="post" action="login.php">
+                            <div class="input-group mb-1">
 
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <label for="username"></label><input type="text" name="username" placeholder="Username"
+                                                                     id="username" class="form-control input_user"
+                                                                     required>
+
                             </div>
-                            <label for="username"></label><input type="text" name="username" placeholder="Username" id="username" class="form-control input_user" required>
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                </div>
+                                <label for="password"></label><input type="password" name="password"
+                                                                     placeholder="Password" id="password"
+                                                                     class="form-control input_user" required>
 
-                        </div>
-                        <div class="input-group mb-2">
-                            <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <label for="password"></label><input type="password" name="password" placeholder="Password" id="password" class="form-control input_user" required>
 
-                        </div>
+                            <div class="d-flex justify-content-center mt-3 login_container">
+                                <button type="submit" name="submit" id="login" class="btn login_btn">Login</button>
+                            </div>
+                            <?php
+                            if (isset($_SESSION["login"])) {
+                                echo $_SESSION["login"];
+                                unset($_SESSION["login"]); //removes message
+                            }
+                            if (isset($_SESSION["no-login"])) {
+                                echo $_SESSION["no-login"];
+                                unset($_SESSION["no-login"]); //removes message
+                            } ?>
 
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <button type="submit" name="submit" id="login" class="btn login_btn">Sign in</button>
-                        </div>
+                        </form>
 
-                    </form>
-
-                </div>
+                    </div>
                     <div class="mt-4">
 
                         <div class="d-flex justify-content-center links">
@@ -89,10 +96,10 @@
                         </div>
 
                     </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php include("partials-front/footer.php"); ?>
 <?php
 if (isset($_POST["submit"])) {
@@ -107,11 +114,11 @@ if (isset($_POST["submit"])) {
     if ($count == 1) {
         $_SESSION['login'] = "<div class='success text-center'>Login successfully</div>";
         $_SESSION['username'] = $username;
-        echo("<script>location.href = '".SITEURL."/teacher/manage-teacher.php';</script>");
+        echo("<script>location.href = '" . SITEURL . "teacher/manage-teacher.php';</script>");
 
     } else {
         $_SESSION['login'] = "<div class='error text-center'>Username or password is incorrect</div>";
-        echo("<script>location.href = '".SITEURL."/login.php';</script>");
+        echo("<script>location.href = '" . SITEURL . "login.php';</script>");
 
     }
 

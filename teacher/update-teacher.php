@@ -1,9 +1,9 @@
 <?php include("partials/menu.php"); ?>
 
     <div class="update-teacher">
-        <div class="container h-100">
+    <div class="container h-100">
 
-            <div class="d-flex justify-content-center h-100">
+        <div class="d-flex justify-content-center h-100">
 
             <div class="user_card">
 
@@ -50,7 +50,10 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <label for="firstname"></label><input type="text" name="firstname" placeholder="Firstname" id="firstname" class="form-control input_user" required>
+                            <label for="firstname"></label><input type="text" name="firstname"
+                                                                  placeholder="<?php echo $firstname; ?>"
+                                                                  id="firstname" class="form-control input_user"
+                                                                  required>
 
                         </div>
 
@@ -59,7 +62,9 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <label for="lastname"></label><input type="text" name="lastname" placeholder="Lastname" id="lastname" class="form-control input_user" required>
+                            <label for="lastname"></label><input type="text" name="lastname"
+                                                                 placeholder="<?php echo $lastname; ?>"
+                                                                 id="lastname" class="form-control input_user" required>
 
                         </div>
 
@@ -68,7 +73,9 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <label for="username"></label><input type="text" name="username" placeholder="Username" id="username" class="form-control input_user" required>
+                            <label for="username"></label><input type="text" name="username"
+                                                                 placeholder="<?php echo $username; ?>"
+                                                                 id="username" class="form-control input_user" required>
 
                         </div>
 
@@ -77,7 +84,9 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email" class="form-control input_user" required>
+                            <label for="email"></label><input type="email" name="email"
+                                                              placeholder="<?php echo $email; ?>" id="email"
+                                                              class="form-control input_user" required>
 
                         </div>
 
@@ -86,7 +95,9 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <label for="courses"></label><input type="text" name="courses" placeholder="Course" id="courses" class="form-control input_user" required>
+                            <label for="courses"></label><input type="text" name="courses"
+                                                                placeholder="<?php echo $courses; ?>"
+                                                                id="courses" class="form-control input_user" required>
 
                         </div>
 
@@ -95,7 +106,9 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
                             </div>
-                            <label for="payment"></label><input type="text" name="payment" placeholder="Payment" id="payment" class="form-control input_user" required>
+                            <label for="payment"></label><input type="text" name="payment"
+                                                                placeholder="<?php echo $payment; ?>"
+                                                                id="payment" class="form-control input_user" required>
 
                         </div>
 
@@ -104,16 +117,18 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fa fa-home"></i></span>
                             </div>
-                            <label for="address"></label><input type="text" name="address" placeholder="Address" id="address" class="form-control input_user" required>
+                            <label for="address"></label><input type="text" name="address"
+                                                                placeholder="<?php echo $address; ?>"
+                                                                id="address" class="form-control input_user" required>
 
                         </div>
 
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
                         <td colspan="2">
 
-                        <div class="d-flex justify-content-center mt-3 update_container">
-                            <button type="submit" name="submit" id="update" class="btn update_btn">Update</button>
-                        </div>
+                            <div class="d-flex justify-content-center mt-3 update_container">
+                                <button type="submit" name="submit" id="update" class="btn update_btn">Update</button>
+                            </div>
                     </form>
                 </div>
             </div>
@@ -157,8 +172,7 @@ if (isset($_POST["submit"])) {
                 $_SESSION["update"] = "<div class='error'>Error while updating</div>";
                 echo("<script>location.href = '" . SITEURL . "/teacher/update-teacher.php';</script>");
             }
-        }
-        else {
+        } else {
             $_SESSION["user-not-found"] = "<div class='error'>User not found</div>";
             echo("<script>location.href = '" . SITEURL . "/teacher/update-teacher.php';</script>");
         }
