@@ -1,43 +1,121 @@
 <?php include("config/constants.php") ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Book -TeacherForYou</title>
-    <link rel="stylesheet" href="css/teacher.css">
+    <meta charset="UTF-8">
+    <!-- Important to make website responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book - TeacherForYou</title>
+
+    <!-- Link our CSS file -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/RegistrationLoginStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<div class="register">
-    <h1 class="text-center">Book teacher</h1>
-    <br/>
-    <br/>
-    <?php
-    $id = $_GET["id"];
-    ?>
+<section class="navbar">
+    <div class="container">
 
-    <form action="" method="post" class="text-center">
-        Full name: <br>
-        <input type="text" name="full_name" placeholder="Enter your name" required>
-        <br> <br>
-        Email: <br>
-        <input type="email" name="email" placeholder="Enter your email" required>
-        <br> <br>
-        Phone number: <br>
-        <input type="text" name="phone" placeholder="Enter phone number" required>
-        <br> <br>
-        Course: <br>
-        <input type="text" name="course" placeholder="Enter curse" required>
-        <br> <br>
-        Hours: <br>
-        <input type="number" name="hours" placeholder="Enter hours" required>
-        <br> <br>
-        Date: <br>
-        <input type="date" name="date" placeholder="Enter date" required>
-        <br> <br>
-        <a href="mailto:kkoutsilis@gmail.com? subject=Booking&body=Test"> <input type="submit" name="submit"
-                                                                                 value="Book" class="btn-primary"
-                                                                                 required> </a>
+        <div class="menu text-right">
+            <ul>
+                <li>
+                    <a href="index.php">Home</a>
+                </li>
+            </ul>
+        </div>
 
-    </form>
+        <div class="clearfix"></div>
+    </div>
+</section>
+<div class="booking">
+    <div class="container h-100">
+
+        <div class="d-flex justify-content-center h-100">
+
+            <div class="user_card">
+
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="images/logo.jpg" class="brand_logo" alt="Teachers For You logo">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center form_container">
+
+                    <?php
+                    if (isset($_GET["id"])) {
+                        $id = $_GET["id"];
+                    } ?>
+
+                    <form method="post" action="book-teacher.php">
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="full_name"></label><input type="text" name="full_name" placeholder="Full Name" id="full_name" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="phone"></label><input type="text" name="phone" placeholder="Phone Number" id="phone" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="course"></label><input type="text" name="course" placeholder="Course" id="course" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="hours"></label><input type="number" name="hours" placeholder="Hours" id="hours" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="date"></label><input type="date" name="date" placeholder="Date" id="hours" class="form-control input_user" required>
+
+                        </div>
+
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+                        <div class="d-flex justify-content-center mt-3 booking_container">
+                            <button type="submit" name="submit" id="book" class="btn booking_btn">Book</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include("partials-front/footer.php"); ?>
@@ -48,6 +126,7 @@
 if (isset($_POST["submit"])) {
     //button clicked
     //get data
+    $id = $_POST["id"];
     $full_name = $_POST["full_name"];
     $email = $_POST["email"];
     $phone = $_POST["phone"];
@@ -74,6 +153,6 @@ if (isset($_POST["submit"])) {
     } else {
         $_SESSION["booked"] = "<div class='error'>Error while registering</div>";
     }
-    header("location:" . SITEURL . "/index.php");
+    echo("<script>location.href = '".SITEURL."/index.php';</script>");
 }
 ?>

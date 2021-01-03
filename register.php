@@ -8,18 +8,16 @@
     <title>Register - TeacherForYou</title>
 
     <!-- Link our CSS file -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/RegistrationLoginStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 <!-- Navbar Section Starts Here -->
 <section class="navbar">
     <div class="container">
-        <div class="logo">
-            <a href="#" title="Logo">
-                <img src="images/logo.jpg" alt="TFU logo" class="img-responsive">
-            </a>
-        </div>
 
         <div class="menu text-right">
             <ul>
@@ -33,46 +31,117 @@
     </div>
 </section>
 <div class="register">
-    <h1 class="text-center">Register</h1>
-    <br/>
-    <br/>
+    <div class="container h-100">
 
-    <?php
-    if (isset($_SESSION["register"])) {
-        echo $_SESSION["register"];
-        unset($_SESSION["register"]); //removes message
-    }
-    ?>
+        <div class="d-flex justify-content-center h-100">
 
-    <form action="" method="post" class="text-center">
-        First name: <br>
-        <input type="text" name="firstname" placeholder="Enter your first name" required>
-        <br> <br>
-        Last name: <br>
-        <input type="text" name="lastname" placeholder="Enter your last name" required>
-        <br> <br>
-        Username: <br>
-        <input type="text" name="username" placeholder="Enter your username" required>
-        <br> <br>
-        Password: <br>
-        <input type="password" name="password" placeholder="Enter your password" required>
-        <br> <br>
-        Email: <br>
-        <input type="email" name="email" placeholder="Enter your email" required>
-        <br> <br>
-        Courses: <br>
-        <input type="text" name="curses" placeholder="Enter your curses" required>
-        <br> <br>
-        Payment: <br>
-        <input type="number" name="payment" placeholder="Enter your payment" required>
-        <br> <br>
-        Address: <br>
-        <input type="text" name="address" placeholder="Enter your address" required>
-        <br> <br>
+            <div class="user_card">
 
-        <input type="submit" name="submit" value="Register" class="btn-primary" required>
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="images/logo.jpg" class="brand_logo" alt="Teachers For You logo">
+                    </div>
+                </div>
 
-    </form>
+                <div class="d-flex justify-content-center form_container">
+
+                    <?php
+                    if (isset($_SESSION["register"])) {
+                        echo $_SESSION["register"];
+                        unset($_SESSION["register"]); //removes message
+                    }
+                    ?>
+
+                    <form method="post" action="register.php">
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="firstname"></label><label for="firstname"></label><input type="text" name="firstname" placeholder="Firstname" id="firstname" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="lastname"></label><input type="text" name="lastname" placeholder="Lastname" id="lastname" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="username"></label></label><input type="text" name="username" placeholder="Username" id="username" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <label for="password"></label><input type="password" name="password" placeholder="Password" id="password" class="form-control input_pass" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            </div>
+                            <label for="courses"></label><input type="text" name="courses" placeholder="Course" id="courses" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                            </div>
+                            <label for="payment"></label><input type="text" name="payment" placeholder="Payment" id="payment" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="input-group mb-1">
+
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fa fa-home"></i></span>
+                            </div>
+                            <label for="address"></label><input type="text" name="address" placeholder="Address" id="address" class="form-control input_user" required>
+
+                        </div>
+
+                        <div class="d-flex justify-content-center mt-3 register_container">
+                            <button type="submit" name="submit" id="register" class="btn register_btn">Sign Up</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                    <div class="mt-4">
+
+                        <div class="d-flex justify-content-center links">
+                            You already have an account? <a href="login.php" class="ml-2">Sign In</a>
+                        </div>
+
+                    </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include("partials-front/footer.php"); ?>
@@ -108,13 +177,13 @@ if (isset($_POST["submit"])) {
     $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
     if ($res == TRUE) {
-        $_SESSION["register"] = "<div class='success'>Registered successfully</div>";
+        $_SESSION["register"] = "<div class='success text-center'>Registered successfully</div>";
         $_SESSION["username"] = $username;
-        header("location:" . SITEURL . "teacher/manage-teacher.php");
+        echo("<script>location.href = '".SITEURL."/teacher/manage-teacher.php';</script>");
 
     } else {
-        $_SESSION["register"] = "<div class='error'>Error while registering</div>";
-        header("location:" . SITEURL . "register.php");
+        $_SESSION["register"] = "<div class='error text-center'>Error while registering</div>";
+        echo("<script>location.href = '".SITEURL."/register.php';</script>");
     }
 }
 ?>

@@ -12,6 +12,10 @@
                 echo $_SESSION["register"];
                 unset($_SESSION["register"]); //removes message
             }
+            if (isset($_SESSION["login"])) {
+                echo $_SESSION["login"];
+                unset($_SESSION["login"]); //removes message
+            }
             if (isset($_SESSION["delete"])) {
                 echo $_SESSION["delete"];
                 unset($_SESSION["delete"]); //removes message
@@ -50,8 +54,6 @@
                 $sql = "SELECT * FROM teacher WHERE username='$username'";
                 $res = mysqli_query($conn, $sql);
 
-                $sn = 1; // sn to display rather than id
-
                 if ($res == TRUE) {
                     $count = mysqli_num_rows($res);
 
@@ -63,30 +65,26 @@
                         $lastname = $rows["lastname"];
                         $username = $rows["username"];
                     }
-                    //display
-                    ?>
-                    <tr>
-                        <td><?php echo $id ?></td>
-                        <td><?php echo $firstname ?></td>
-                        <td><?php echo $lastname ?></td>
-                        <td><?php echo $username ?></td>
-                        <td>
-                            <a href="<?php echo SITEURL; ?>teacher/update-password.php?id=<?php echo $id; ?>"
-                               class="btn-primary">Change Password</a>
-                            <a href="<?php echo SITEURL; ?>teacher/update-teacher.php?id=<?php echo $id; ?>"
-                               class="btn-secondary">Update</a>
-                            <a href="<?php echo SITEURL; ?>teacher/delete-teacher.php?id=<?php echo $id; ?>"
-                               class="btn-danger">Delete</a>
-                            <a href="<?php echo SITEURL; ?>teacher/bookings.php?id=<?php echo $id; ?>"
-                               class="btn-booking">Bookings</a>
-                        </td>
-                    </tr>
-                    <?php
-
                 }
+                //display
                 ?>
+                <tr>
+                    <td><?php echo $id ?></td>
+                    <td><?php echo $firstname ?></td>
+                    <td><?php echo $lastname ?></td>
+                    <td><?php echo $username ?></td>
+                    <td>
+                        <a href="<?php echo SITEURL; ?>teacher/update-password.php?id=<?php echo $id; ?>"
+                               class="btn-primary">Change Password</a>
+                        <a href="<?php echo SITEURL; ?>teacher/update-teacher.php?id=<?php echo $id; ?>"
+                               class="btn-secondary">Update</a>
+                        <a href="<?php echo SITEURL; ?>teacher/delete-teacher.php?id=<?php echo $id; ?>"
+                               class="btn-danger">Delete</a>
+                        <a href="<?php echo SITEURL; ?>teacher/bookings.php?id=<?php echo $id; ?>"
+                               class="btn-booking">Bookings</a>
+                    </td>
+                </tr>
             </table>
-
         </div>
     </div>
     <!-- main section end -->

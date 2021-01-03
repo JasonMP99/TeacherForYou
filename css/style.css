@@ -16,7 +16,7 @@
 .container {
     width: 80%;
     margin: 0 auto;
-    padding: 1%;
+    padding: initial;
 }
 
 .img-responsive {
@@ -141,7 +141,7 @@ fieldset {
     color: #4834d4;
 }
 
-/* CSS for Food SEarch Section */
+/* CSS for Teacher Search Section */
 
 .search {
     background-image: url(../images/search-bg.jpg);
