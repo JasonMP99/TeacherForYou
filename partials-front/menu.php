@@ -8,7 +8,7 @@
     <title>TeacherForYou</title>
 
     <!-- Link our CSS file -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                     <a href="register.php">Register</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="contact.php">Contact</a>
                 </li>
             </ul>
         </div>
