@@ -1,5 +1,5 @@
-# TeacherForYou
-[TeacherForYou](https://teacherforyouihu.000webhostapp.com/index.php) is a platform for people that need help with their studies.  
+# [TeacherForYou](https://teacherforyouihu.000webhostapp.com/index.php)
+TeacherForYou is a platform for people that need help with their studies.  
 Here you can find a teacher to help you and make an appointment.
 
 ## Class
