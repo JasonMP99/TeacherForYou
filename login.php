@@ -6,6 +6,7 @@
         <!-- Important to make website responsive -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login - TeacherForYou</title>
+        <link rel="icon" href="images/tfy-logo.png" type="image/icon type">
 
         <!-- Link our CSS file -->
         <link rel="stylesheet" type="text/css"
