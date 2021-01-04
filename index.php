@@ -10,6 +10,19 @@
         </div>
     </section>
 
+    <!-- welcome section starts here-->
+    <section class="teacher">
+        <div class="container">
+            <h2 class="text-center">Welcome to TeacherForYou</h2>
+            <p class="text-center ">TeacherForYou is a platform for people that need help with their studies. <br / >
+                Here you can find a teacher to help you and make an appointment.</p>
+        </div>
+    </section>
+
+
+    <!-- welcome section ends here-->
+
+
     <!-- teacher Section Starts Here -->
     <section class="teacher">
         <div class="container">
