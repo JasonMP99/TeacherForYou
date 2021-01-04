@@ -62,6 +62,10 @@
                         </tr>
                         <?php
                     }
+                }else{
+                    ?>
+                    <p class="text-center">No bookings found.</p>
+                    <?php
                 }
             }
 

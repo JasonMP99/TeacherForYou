@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/images/tfy-logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/book-teacher.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/RegistrationLoginStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/RegistrationLoginStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/teacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/teacher.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/logo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/partials-front/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/partials-front/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/bookings.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/bookings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/update-password.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-password.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../foodOrder" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -47,6 +59,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programs\Xampp\htdocs\TeacherForYou\images" />
       <recent name="C:\xampp\htdocs\TeacherForYou" />
       <recent name="C:\xampp\htdocs\TeacherForYou\css" />
       <recent name="D:\Programs\Xampp\htdocs\TeacherForYou" />
@@ -71,7 +84,7 @@
       <workItem from="1609593741271" duration="4848000" />
       <workItem from="1609598693400" duration="16400000" />
       <workItem from="1609684248459" duration="5082000" />
-      <workItem from="1609778067271" duration="5842000" />
+      <workItem from="1609778067271" duration="7815000" />
     </task>
     <servers />
   </component>

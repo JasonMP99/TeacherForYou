@@ -17,7 +17,7 @@
     <div class="container">
         <div class="logo">
             <a href="#" title="Logo">
-                <img src="images/logo.jpg" alt="TFU logo" class="img-responsive">
+                <img src="images/tfy-logo.png" alt="TFU logo" class="img-responsive">
             </a>
         </div>
 

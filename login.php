@@ -44,7 +44,7 @@
 
                     <div class="d-flex justify-content-center">
                         <div class="brand_logo_container">
-                            <img src="images/logo.jpg" class="brand_logo" alt="Teachers For You logo">
+                            <img src="images/tfy-logo.png" class="brand_logo" alt="Teachers For You logo">
                         </div>
                     </div>
 

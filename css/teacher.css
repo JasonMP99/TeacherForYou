@@ -118,11 +118,11 @@ table tr td {
 .menu ul li a {
     text-decoration: none;
     font-weight: bold;
-    color: #4834d4;
+    color: #a29bfe;
 }
 
 .menu ul li a:hover {
-    color: #4834d4;
+    color: grey;
 }
 
 /* css for main */
@@ -142,9 +142,8 @@ table tr td {
 
 /* css for footer */
 .footer {
-    background-color: #4834d4;
+    background-color: #a29bfe;
     color: white;
-    position: fixed;
     bottom: 0;
 }
 

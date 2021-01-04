@@ -10,7 +10,7 @@ body,html{
     width: 375px;
     margin-top: auto;
     margin-bottom: auto;
-    background: #603abc;
+    background: #a29bfe;
     position: relative;
     display: flex;
     justify-content: center;
@@ -28,7 +28,7 @@ body,html{
     width: 170px;
     top: -75px;
     border-radius: 50%;
-    background: #603abc;
+    background: #a29bfe;
     padding: 10px;
     text-align: center;
 }
@@ -47,7 +47,7 @@ body,html{
 .register_btn{
     width: 75%;
     background: white !important;
-    color: #603abc !important;
+    color: #a29bfe !important;
 }
 
 .register_btn:focus{
@@ -61,7 +61,7 @@ body,html{
 .login_btn{
     width: 75%;
     background: white !important;
-    color: #603abc !important;
+    color: #a29bfe !important;
 }
 
 .login_btn:focus{
@@ -75,7 +75,7 @@ body,html{
 .update_btn{
     width: 75%;
     background: white !important;
-    color: #603abc !important;
+    color: #a29bfe !important;
 }
 
 .update_btn:focus{
@@ -89,7 +89,7 @@ body,html{
 .booking_btn{
     width: 75%;
     background: white !important;
-    color: #603abc !important;
+    color: #a29bfe !important;
 }
 
 .booking_btn:focus{
@@ -102,7 +102,7 @@ body,html{
 
 .input-group-text{
     background: white !important;
-    color: #603abc !important;
+    color: #a29bfe !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
 }
