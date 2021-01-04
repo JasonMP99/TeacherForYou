@@ -16,7 +16,7 @@
 <section class="navbar">
     <div class="container">
         <div class="logo">
-            <a href="#" title="Logo">
+            <a href="https://www.freelogodesign.org/ " target="_blank" title="Logo">
                 <img src="images/tfy-logo.png" alt="TFU logo" class="img-responsive">
             </a>
         </div>
