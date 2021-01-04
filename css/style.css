@@ -154,7 +154,7 @@ fieldset {
 }
 
 .search input[type="search"] {
-    width: 150px;
+    width: 140px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -339,7 +339,7 @@ body, button, input {
 
 .screen {
     position: relative;
-    background: #3e3e3e;
+    background: #a29bfe;
     border-radius: 15px;
 }
 
@@ -360,7 +360,7 @@ body, button, input {
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    background: #4d4d4f;
+    background: #ddd;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -375,7 +375,7 @@ body, button, input {
     height: 8px;
     margin-right: 3px;
     border-radius: 8px;
-    background: white;
+    background: #ddd;
 }
 
 .screen-header-button.close {
@@ -404,6 +404,7 @@ body, button, input {
 
 .screen-body {
     display: flex;
+
 }
 
 .screen-body-item {
@@ -420,7 +421,7 @@ body, button, input {
     display: flex;
     flex-direction: column;
     position: relative;
-    color: #a29bfe;
+    color: #ddd;
     font-size: 26px;
 }
 
@@ -432,13 +433,13 @@ body, button, input {
     bottom: -10px;
     width: 25px;
     height: 4px;
-    background: #a29bfe;
+    background: #ddd;
 }
 
 .app-contact {
     margin-top: auto;
-    font-size: 8px;
-    color: #888;
+    font-size: 12px;
+    color: #ddd;
 }
 
 .app-form-group {
@@ -459,8 +460,8 @@ body, button, input {
     padding: 10px 0;
     background: none;
     border: none;
-    border-bottom: 1px solid #666;
-    color: #ddd;
+    border-bottom: 1px solid #ddd;
+    color: white;
     font-size: 14px;
     text-transform: uppercase;
     outline: none;
@@ -468,7 +469,7 @@ body, button, input {
 }
 
 .app-form-control::placeholder {
-    color: #666;
+    color: #ddd;
 }
 
 .app-form-control:focus {
@@ -478,14 +479,14 @@ body, button, input {
 .app-form-button {
     background: none;
     border: none;
-    color:#a29bfe;
+    color: #ddd;
     font-size: 14px;
     cursor: pointer;
     outline: none;
 }
 
 .app-form-button:hover {
-    color: #a29bfe;
+    color: #ddd;
 }
 
 .credits {
