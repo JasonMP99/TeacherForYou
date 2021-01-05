@@ -14,10 +14,10 @@ $res2 = mysqli_query($conn, $sql2);
 //check if executed successfully
 if ($res == TRUE && $res2 == TRUE) {
     session_destroy();
-    header("location:" . SITEURL . "index.php");
+    echo("<script>location.href = '".SITEURL."index.php';</script>");
 } else {
     $_SESSION['delete'] = "<div class='error'>Error while deleting </div>";
-    header("location:" . SITEURL . "teacher/update-teacher.php");
+    echo("<script>location.href = '".SITEURL."teacher/manage-teacher.php';</script>");
 
 }
 ?>
