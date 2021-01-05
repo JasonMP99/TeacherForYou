@@ -95,12 +95,12 @@ if (isset($_POST["submit"])) {
                     echo("<script>location.href = '".SITEURL."/teacher/manage-teacher.php';</script>");
                 }
             } else {
-                $_SESSION["psw-not-match"] = "<div class='success text-center'>Password don't match</div>";
+                $_SESSION["psw-not-match"] = "<div class='error text-center'>Password don't match</div>";
                 echo("<script>location.href = '".SITEURL."/teacher/update-password.php';</script>");
             }
         } else {
             $_SESSION["user-not-found"] = "<div class='error text-center'>User not found</div>";
-            echo("<script>location.href = '".SITEURL."/teacher/update-teacher.php';</script>");
+            echo("<script>location.href = '".SITEURL."/teacher/manage-teacher.php';</script>");
         }
     } else {
 

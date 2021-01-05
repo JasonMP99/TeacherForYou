@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teacher/delete-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/delete-teacher.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teacher/partials/login-check.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/partials/login-check.php" afterDir="false" />
     </list>
@@ -73,7 +74,7 @@
       <workItem from="1609598693400" duration="16400000" />
       <workItem from="1609684248459" duration="5082000" />
       <workItem from="1609778067271" duration="10407000" />
-      <workItem from="1609831564528" duration="68000" />
+      <workItem from="1609831564528" duration="439000" />
     </task>
     <servers />
   </component>
