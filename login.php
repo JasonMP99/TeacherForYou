@@ -57,7 +57,7 @@
                             <div class="input-group mb-1">
 
                                 <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                 </div>
                                 <label for="username"></label><input type="text" name="username" placeholder="Username"
                                                                      id="username" class="form-control input_user"

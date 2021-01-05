@@ -9,8 +9,10 @@
     <title>Book - TeacherForYou</title>
 
     <!-- Link our CSS file -->
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/RegistrationLoginStyle.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -56,52 +58,59 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <label for="full_name"></label><input type="text" name="full_name" placeholder="Full Name" id="full_name" class="form-control input_user" required>
+                            <label for="full_name"></label><input type="text" name="full_name" placeholder="Full Name"
+                                                                  id="full_name" class="form-control input_user"
+                                                                  required>
 
                         </div>
 
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
-                            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email" class="form-control input_user" required>
+                            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email"
+                                                              class="form-control input_user" required>
 
                         </div>
 
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
                             </div>
-                            <label for="phone"></label><input type="text" name="phone" placeholder="Phone Number" id="phone" class="form-control input_user" required>
+                            <label for="phone"></label><input type="text" name="phone" placeholder="Phone Number"
+                                                              id="phone" class="form-control input_user" required>
 
                         </div>
 
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-book"></i></span>
                             </div>
-                            <label for="course"></label><input type="text" name="course" placeholder="Course" id="course" class="form-control input_user" required>
+                            <label for="course"></label><input type="text" name="course" placeholder="Course"
+                                                               id="course" class="form-control input_user" required>
 
                         </div>
 
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fa fa-clock"></i></span>
                             </div>
-                            <label for="hours"></label><input type="number" name="hours" placeholder="Hours" id="hours" class="form-control input_user" required>
+                            <label for="hours"></label><input type="number" name="hours" placeholder="Hours" id="hours"
+                                                              class="form-control input_user" required>
 
                         </div>
 
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                             </div>
-                            <label for="date"></label><input type="date" name="date" placeholder="Date" id="hours" class="form-control input_user" required>
+                            <label for="date"></label><input type="date" name="date" placeholder="Date" id="hours"
+                                                             class="form-control input_user" required>
 
                         </div>
 
@@ -153,6 +162,6 @@ if (isset($_POST["submit"])) {
     } else {
         $_SESSION["booked"] = "<div class='error'>Error while registering</div>";
     }
-    echo("<script>location.href = '".SITEURL."/index.php';</script>");
+    echo("<script>location.href = '" . SITEURL . "/index.php';</script>");
 }
 ?>

@@ -79,7 +79,7 @@
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                             </div>
                             <label for="username"></label></label><input type="text" name="username"
                                                                          placeholder="Username" id="username"
@@ -100,7 +100,7 @@
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
                             <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email"
                                                               class="form-control input_user" required>
@@ -110,7 +110,7 @@
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <span class="input-group-text"><i class="fas fa-book"></i></span>
                             </div>
                             <label for="courses"></label><input type="text" name="courses" placeholder="Course"
                                                                 id="courses" class="form-control input_user" required>

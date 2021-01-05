@@ -71,7 +71,7 @@
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                             </div>
                             <label for="username"></label><input type="text" name="username"
                                                                  placeholder="<?php echo $username; ?>"
@@ -82,7 +82,7 @@
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                             </div>
                             <label for="email"></label><input type="email" name="email"
                                                               placeholder="<?php echo $email; ?>" id="email"
@@ -93,7 +93,7 @@
                         <div class="input-group mb-1">
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="fas fa-book"></i></span>
                             </div>
                             <label for="courses"></label><input type="text" name="courses"
                                                                 placeholder="<?php echo $courses; ?>"
