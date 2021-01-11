@@ -38,7 +38,7 @@
 
 
                         } else {
-                            header("location:" . SITEURL . "teacher/update-teacher.php");
+                            echo("<script>location.href = '" . SITEURL . "/teacher/update-teacher.php';</script>");
                         }
                     }
 

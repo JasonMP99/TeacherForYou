@@ -1,0 +1,486 @@
+Index: teacher/update-teacher.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php include(\"partials/menu.php\"); ?>\r\n\r\n    <div class=\"update-teacher\">\r\n    <div class=\"container h-100\">\r\n\r\n        <div class=\"d-flex justify-content-center h-100\">\r\n\r\n            <div class=\"user_card\">\r\n\r\n                <div class=\"d-flex justify-content-center\">\r\n                    <div class=\"brand_logo_container\">\r\n                        <img src=\"../images/tfy-logo.png\" class=\"brand_logo\" alt=\"Teachers For You logo\">\r\n                    </div>\r\n                </div>\r\n\r\n                <div class=\"d-flex justify-content-center form_container\">\r\n\r\n                    <?php\r\n                    if (isset($_GET[\"id\"])) {\r\n                        $id = $_GET[\"id\"];\r\n                    }\r\n                    $sql = \"SELECT * FROM teacher WHERE id=$id\";\r\n\r\n                    $res = mysqli_query($conn, $sql);\r\n\r\n                    if ($res == TRUE) {\r\n                        $count = mysqli_num_rows($res);\r\n\r\n                        if ($count == 1) {\r\n                            $row = mysqli_fetch_assoc($res);\r\n                            $firstname = $row[\"firstname\"];\r\n                            $lastname = $row[\"lastname\"];\r\n                            $username = $row[\"username\"];\r\n                            $email = $row[\"email\"];\r\n                            $courses = $row[\"courses\"];\r\n                            $payment = $row[\"payment\"];\r\n                            $address = $row[\"address\"];\r\n\r\n\r\n                        } else {\r\n                            header(\"location:\" . SITEURL . \"teacher/update-teacher.php\");\r\n                        }\r\n                    }\r\n\r\n                    ?>\r\n\r\n                    <form method=\"post\" action=\"update-teacher.php\">\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fas fa-user\"></i></span>\r\n                            </div>\r\n                            <label for=\"firstname\"></label><input type=\"text\" name=\"firstname\"\r\n                                                                  placeholder=\"<?php echo $firstname; ?>\"\r\n                                                                  id=\"firstname\" class=\"form-control input_user\"\r\n                                                                  required>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fas fa-user\"></i></span>\r\n                            </div>\r\n                            <label for=\"lastname\"></label><input type=\"text\" name=\"lastname\"\r\n                                                                 placeholder=\"<?php echo $lastname; ?>\"\r\n                                                                 id=\"lastname\" class=\"form-control input_user\" required>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fas fa-user-circle\"></i></span>\r\n                            </div>\r\n                            <label for=\"username\"></label><input type=\"text\" name=\"username\"\r\n                                                                 placeholder=\"<?php echo $username; ?>\"\r\n                                                                 id=\"username\" class=\"form-control input_user\" required>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fas fa-envelope\"></i></span>\r\n                            </div>\r\n                            <label for=\"email\"></label><input type=\"email\" name=\"email\"\r\n                                                              placeholder=\"<?php echo $email; ?>\" id=\"email\"\r\n                                                              class=\"form-control input_user\" required>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fas fa-book\"></i></span>\r\n                            </div>\r\n                            <label for=\"courses\"></label><input type=\"text\" name=\"courses\"\r\n                                                                placeholder=\"<?php echo $courses; ?>\"\r\n                                                                id=\"courses\" class=\"form-control input_user\" required>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fas fa-credit-card\"></i></span>\r\n                            </div>\r\n                            <label for=\"payment\"></label><input type=\"text\" name=\"payment\"\r\n                                                                placeholder=\"<?php echo $payment; ?>\"\r\n                                                                id=\"payment\" class=\"form-control input_user\" required>\r\n\r\n                        </div>\r\n\r\n                        <div class=\"input-group mb-1\">\r\n\r\n                            <div class=\"input-group-append\">\r\n                                <span class=\"input-group-text\"><i class=\"fa fa-home\"></i></span>\r\n                            </div>\r\n                            <label for=\"address\"></label><input type=\"text\" name=\"address\"\r\n                                                                placeholder=\"<?php echo $address; ?>\"\r\n                                                                id=\"address\" class=\"form-control input_user\" required>\r\n\r\n                        </div>\r\n\r\n                        <input type=\"hidden\" name=\"id\" value=\"<?php echo $id; ?>\">\r\n                        <td colspan=\"2\">\r\n\r\n                            <div class=\"d-flex justify-content-center mt-3 update_container\">\r\n                                <button type=\"submit\" name=\"submit\" id=\"update\" class=\"btn update_btn\">Update</button>\r\n                            </div>\r\n                            <?php\r\n                            if (isset($_SESSION[\"username-exists\"])) {\r\n                                echo $_SESSION[\"username-exists\"];\r\n                                unset($_SESSION[\"username-exists\"]); //removes message\r\n                            } ?>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n<?php\r\n//get values from form\r\nif (isset($_POST[\"submit\"])) {\r\n    $id = $_POST[\"id\"];\r\n    $firstname = $_POST[\"firstname\"];\r\n    $lastname = $_POST[\"lastname\"];\r\n    $username = $_POST[\"username\"];\r\n\r\n    //check if username exists\r\n    $sql_username = \"SELECT * FROM teacher WHERE username='$username'\";\r\n    $res_username = mysqli_query($conn, $sql_username) or die(mysqli_error($conn));\r\n    if ($res_username == TRUE) {\r\n        $count = mysqli_num_rows($res_username);\r\n        if ($count > 0) {\r\n            $_SESSION[\"username-exists\"] = \"<div class='error text-center'>Username already exists</div>\";\r\n            echo(\"<script>location.href = '\" . SITEURL . \"teacher/update-teacher.php?id=$id';</script>\");\r\n            die();\r\n        }\r\n    }\r\n    $email = $_POST[\"email\"];\r\n    $courses = $_POST[\"courses\"];\r\n    $payment = $_POST[\"payment\"];\r\n    $address = $_POST[\"address\"];\r\n\r\n    $sql = \"SELECT * FROM teacher WHERE id= $id\";\r\n\r\n    $res = mysqli_query($conn, $sql);\r\n\r\n    if ($res == TRUE) {\r\n        $count = mysqli_num_rows($res);\r\n        if ($count == 1) {\r\n            $sql2 = \"UPDATE teacher SET\r\n            firstname='$firstname', \r\n            lastname= '$lastname',\r\n            username='$username',\r\n            email='$email',\r\n            courses='$courses',\r\n            payment='$payment',\r\n            address='$address'\r\n            WHERE id= $id \";\r\n\r\n            $res2 = mysqli_query($conn, $sql2);\r\n            if ($res2 == TRUE) {\r\n                $_SESSION[\"update\"] = \"<div class='success'>Updated successfully</div>\";\r\n                $_SESSION[\"username\"] = $username;\r\n                echo(\"<script>location.href = '\" . SITEURL . \"/teacher/manage-teacher.php';</script>\");\r\n            } else {\r\n                $_SESSION[\"update\"] = \"<div class='error'>Error while updating</div>\";\r\n                echo(\"<script>location.href = '\" . SITEURL . \"/teacher/update-teacher.php';</script>\");\r\n            }\r\n        } else {\r\n            $_SESSION[\"user-not-found\"] = \"<div class='error'>User not found</div>\";\r\n            echo(\"<script>location.href = '\" . SITEURL . \"/teacher/update-teacher.php';</script>\");\r\n        }\r\n    }\r\n}\r\n?>\r\n\r\n<?php include(\"partials/footer.php\"); ?>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/teacher/update-teacher.php b/teacher/update-teacher.php
+--- a/teacher/update-teacher.php	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ b/teacher/update-teacher.php	(date 1610352150185)
+@@ -38,7 +38,7 @@
+ 
+ 
+                         } else {
+-                            header("location:" . SITEURL . "teacher/update-teacher.php");
++                            echo("<script>location.href = '" . SITEURL . "/teacher/update-teacher.php';</script>");
+                         }
+                     }
+ 
+Index: teacher/delete-booking.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\ninclude(\"../config/constants.php\");\r\n//get id of booking to be deleted\r\n$id = $_GET[\"id\"];\r\n\r\n\r\n//create sql query\r\n$sql = \"SELECT teacher_id FROM bookings WHERE id=$id\";\r\n$sql2 = \"DELETE FROM bookings WHERE id=$id\";\r\n\r\n//get teacher id\r\n$res = mysqli_query($conn, $sql);\r\n$row = mysqli_fetch_assoc($res);\r\n$teacher_id = $row[\"teacher_id\"];\r\n\r\n//execute delete\r\n$res2 = mysqli_query($conn, $sql2);\r\n\r\n//check if executed successfully\r\nif ($res2 == TRUE) {\r\n    $_SESSION['delete-booking'] = \"<div class='success'>Booking Deleted</div>\";\r\n\r\n} else {\r\n    $_SESSION['delete-booking'] = \"<div class='error'>Error while deleting </div>\";\r\n}\r\nheader(\"location:\" . SITEURL . \"teacher/bookings.php?id=$teacher_id\");\r\n?>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/teacher/delete-booking.php b/teacher/delete-booking.php
+--- a/teacher/delete-booking.php	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ b/teacher/delete-booking.php	(date 1610351075891)
+@@ -23,5 +23,5 @@
+ } else {
+     $_SESSION['delete-booking'] = "<div class='error'>Error while deleting </div>";
+ }
+-header("location:" . SITEURL . "teacher/bookings.php?id=$teacher_id");
++echo("<script>location.href = '" . SITEURL . "teacher/bookings.php?id=$teacher_id';</script>");
+ ?>
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM__Default_Changelist_.xml	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]" date="1609694820521" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 03-Jan-21 7:26 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM__Default_Changelist_.xml	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]" date="1609709321062" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 03-Jan-21 11:28 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,130 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/register.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/register.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/teacher/update-teacher.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/teacher/update-teacher.php\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"teacher-upload-photo\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1mTjZs9ubmQmglGsJ6KpQ7DwuRt\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\r\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\xampp\\htdocs\\TeacherForYou\" />\r\n      <recent name=\"C:\\xampp\\htdocs\\TeacherForYou\\css\" />\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1609524533550</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1609524533550</updated>\r\n      <workItem from=\"1609524534653\" duration=\"13236000\" />\r\n      <workItem from=\"1609538560408\" duration=\"3238000\" />\r\n      <workItem from=\"1609576120270\" duration=\"6255000\" />\r\n      <workItem from=\"1609584768092\" duration=\"5259000\" />\r\n      <workItem from=\"1609592145715\" duration=\"1298000\" />\r\n      <workItem from=\"1609593741271\" duration=\"4848000\" />\r\n      <workItem from=\"1609598693400\" duration=\"16400000\" />\r\n      <workItem from=\"1609684248459\" duration=\"5082000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 6bb55ee978f24a0677b303cc017d61576b0ca429)
+-+++ b/.idea/workspace.xml	(date 1609705826986)
+-@@ -2,9 +2,10 @@
+- <project version="4">
+-   <component name="ChangeListManager">
+-     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
+-+      <change afterPath="$PROJECT_DIR$/contact.php" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/.idea/TeacherForYou.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TeacherForYou.iml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/partials-front/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/partials-front/menu.php" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-Index: partials-front/menu.php
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?php include(\"config/constants.php\"); ?>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <!-- Important to make website responsive -->\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>TeacherForYou</title>\r\n\r\n    <!-- Link our CSS file -->\r\n    <link rel=\"stylesheet\" href=\"css/style.css\">\r\n</head>\r\n\r\n<body>\r\n<!-- Navbar Section Starts Here -->\r\n<section class=\"navbar\">\r\n    <div class=\"container\">\r\n        <div class=\"logo\">\r\n            <a href=\"#\" title=\"Logo\">\r\n                <img src=\"images/logo.jpg\" alt=\"TFU logo\" class=\"img-responsive\">\r\n            </a>\r\n        </div>\r\n\r\n        <div class=\"menu text-right\">\r\n            <ul>\r\n                <li>\r\n                    <a href=\"index.php\">Home</a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"login.php\">Login</a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"register.php\">Register</a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\">Contact</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"clearfix\"></div>\r\n    </div>\r\n</section>\r\n<!-- Navbar Section Ends Here -->\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/partials-front/menu.php b/partials-front/menu.php
+---- a/partials-front/menu.php	(revision 6bb55ee978f24a0677b303cc017d61576b0ca429)
+-+++ b/partials-front/menu.php	(date 1609703063840)
+-@@ -8,7 +8,7 @@
+-     <title>TeacherForYou</title>
+- 
+-     <!-- Link our CSS file -->
+--    <link rel="stylesheet" href="css/style.css">
+-+    <link rel="stylesheet" type="text/css" href="css/style.css">
+- </head>
+- 
+- <body>
+-@@ -33,7 +33,7 @@
+-                     <a href="register.php">Register</a>
+-                 </li>
+-                 <li>
+--                    <a href="#">Contact</a>
+-+                    <a href="contact.php">Contact</a>
+-                 </li>
+-             </ul>
+-         </div>
+-Index: .idea/TeacherForYou.iml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"WEB_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/TeacherForYou.iml b/.idea/TeacherForYou.iml
+---- a/.idea/TeacherForYou.iml	(revision 6bb55ee978f24a0677b303cc017d61576b0ca429)
+-+++ b/.idea/TeacherForYou.iml	(date 1609703252605)
+-@@ -4,5 +4,7 @@
+-     <content url="file://$MODULE_DIR$" />
+-     <orderEntry type="inheritedJdk" />
+-     <orderEntry type="sourceFolder" forTests="false" />
+-+    <orderEntry type="library" name="all" level="application" />
+-+    <orderEntry type="library" name="bootstrap" level="application" />
+-   </component>
+- </module>
+-\ No newline at end of file
+-Index: contact.php
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/contact.php b/contact.php
+-new file mode 100644
+---- /dev/null	(date 1609702994045)
+-+++ b/contact.php	(date 1609702994045)
+-@@ -0,0 +1,50 @@
+-+<?php include("partials-front/menu.php"); ?>
+-+
+-+<div class="d-flex justify-content-center form_container">
+-+    <form action="">
+-+
+-+        <div class="input-group mb-1">
+-+            <div class="input-group-append">
+-+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+-+            </div>
+-+            <label for="firstname"></label><input type="text"
+-+                                                  name="firstname"
+-+                                                  placeholder="Firstname"
+-+                                                  id="firstname"
+-+                                                  class="form-control input_user"
+-+                                                  required>
+-+
+-+        </div>
+-+
+-+        <div class="input-group mb-1">
+-+
+-+            <div class="input-group-append">
+-+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+-+            </div>
+-+            <label for="lastname"></label><input type="text" name="lastname" placeholder="Lastname"
+-+                                                 id="lastname" class="form-control input_user" required>
+-+
+-+        </div>
+-+
+-+        <div class="input-group mb-1">
+-+
+-+            <div class="input-group-append">
+-+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+-+            </div>
+-+            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email"
+-+                                              class="form-control input_user" required>
+-+
+-+        </div>
+-+
+-+        <div class="input-group mb-1">
+-+            <label for="subject">Subject</label>
+-+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+-+        </div>
+-+        <div class="d-flex justify-content-center mt-3 register_container">
+-+            <button type="submit" name="submit" id="register" class="btn register_btn">Sign Up</button>
+-+        </div>
+-+
+-+    </form>
+-+</div>
+-+
+-+<?php include("partials-front/footer.php"); ?>
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM__Default_Changelist_.xml	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]" date="1609583415783" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 02-Jan-21 12:29 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM__Default_Changelist_.xml	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]" date="1609709329677" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Merge at 03-Jan-21 11:28 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,107 +0,0 @@
+-Index: contact.php
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/contact.php b/contact.php
+-new file mode 100644
+---- /dev/null	(date 1609709320919)
+-+++ b/contact.php	(date 1609709320919)
+-@@ -0,0 +1,50 @@
+-+<?php include("partials-front/menu.php"); ?>
+-+
+-+<div class="d-flex justify-content-center form_container">
+-+    <form action="">
+-+
+-+        <div class="input-group mb-1">
+-+            <div class="input-group-append">
+-+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+-+            </div>
+-+            <label for="firstname"></label><input type="text"
+-+                                                  name="firstname"
+-+                                                  placeholder="Firstname"
+-+                                                  id="firstname"
+-+                                                  class="form-control input_user"
+-+                                                  required>
+-+
+-+        </div>
+-+
+-+        <div class="input-group mb-1">
+-+
+-+            <div class="input-group-append">
+-+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+-+            </div>
+-+            <label for="lastname"></label><input type="text" name="lastname" placeholder="Lastname"
+-+                                                 id="lastname" class="form-control input_user" required>
+-+
+-+        </div>
+-+
+-+        <div class="input-group mb-1">
+-+
+-+            <div class="input-group-append">
+-+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+-+            </div>
+-+            <label for="email"></label><input type="email" name="email" placeholder="E-Mail" id="email"
+-+                                              class="form-control input_user" required>
+-+
+-+        </div>
+-+
+-+        <div class="input-group mb-1">
+-+            <label for="subject">Subject</label>
+-+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+-+        </div>
+-+        <div class="d-flex justify-content-center mt-3 register_container">
+-+            <button type="submit" name="submit" id="register" class="btn register_btn">Sign Up</button>
+-+        </div>
+-+
+-+    </form>
+-+</div>
+-+
+-+<?php include("partials-front/footer.php"); ?>
+-Index: partials-front/menu.php
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?php include(\"config/constants.php\"); ?>\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <!-- Important to make website responsive -->\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>TeacherForYou</title>\r\n\r\n    <!-- Link our CSS file -->\r\n    <link rel=\"stylesheet\" href=\"css/style.css\">\r\n</head>\r\n\r\n<body>\r\n<!-- Navbar Section Starts Here -->\r\n<section class=\"navbar\">\r\n    <div class=\"container\">\r\n        <div class=\"logo\">\r\n            <a href=\"#\" title=\"Logo\">\r\n                <img src=\"images/logo.jpg\" alt=\"TFU logo\" class=\"img-responsive\">\r\n            </a>\r\n        </div>\r\n\r\n        <div class=\"menu text-right\">\r\n            <ul>\r\n                <li>\r\n                    <a href=\"index.php\">Home</a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"teacher/login.php\">Login</a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"teacher/register.php\">Register</a>\r\n                </li>\r\n                <li>\r\n                    <a href=\"#\">Contact</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n\r\n        <div class=\"clearfix\"></div>\r\n    </div>\r\n</section>\r\n<!-- Navbar Section Ends Here -->\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/partials-front/menu.php b/partials-front/menu.php
+---- a/partials-front/menu.php	(revision cea05a2388097a7180e20458dea984da23bfbb3e)
+-+++ b/partials-front/menu.php	(date 1609709320877)
+-@@ -8,7 +8,7 @@
+-     <title>TeacherForYou</title>
+- 
+-     <!-- Link our CSS file -->
+--    <link rel="stylesheet" href="css/style.css">
+-+    <link rel="stylesheet" type="text/css" href="css/style.css">
+- </head>
+- 
+- <body>
+-@@ -33,7 +33,7 @@
+-                     <a href="teacher/register.php">Register</a>
+-                 </li>
+-                 <li>
+--                    <a href="#">Contact</a>
+-+                    <a href="contact.php">Contact</a>
+-                 </li>
+-             </ul>
+-         </div>
+-Index: .idea/TeacherForYou.iml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"WEB_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/TeacherForYou.iml b/.idea/TeacherForYou.iml
+---- a/.idea/TeacherForYou.iml	(revision cea05a2388097a7180e20458dea984da23bfbb3e)
+-+++ b/.idea/TeacherForYou.iml	(date 1609709320914)
+-@@ -4,5 +4,7 @@
+-     <content url="file://$MODULE_DIR$" />
+-     <orderEntry type="inheritedJdk" />
+-     <orderEntry type="sourceFolder" forTests="false" />
+-+    <orderEntry type="library" name="all" level="application" />
+-+    <orderEntry type="library" name="bootstrap" level="application" />
+-   </component>
+- </module>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]/shelved.patch	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,67 +0,0 @@
+-Index: teacher/update-teacher.php
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?php include(\"partials/menu.php\"); ?>\r\n\r\n    <div class=\"main-content\">\r\n        <div class=\"wrapper\">\r\n            <h1>Update</h1>\r\n\r\n            <?php\r\n            $id = $_GET[\"id\"];\r\n\r\n            $sql = \"SELECT * FROM teacher WHERE id=$id\";\r\n\r\n            $res = mysqli_query($conn, $sql);\r\n\r\n            if ($res == TRUE) {\r\n                $count = mysqli_num_rows($res);\r\n\r\n                if ($count == 1) {\r\n                    $row = mysqli_fetch_assoc($res);\r\n                    $firstname = $row[\"firstname\"];\r\n                    $lastname = $row[\"lastname\"];\r\n                    $username = $row[\"username\"];\r\n                    $email = $row[\"email\"];\r\n                    $courses = $row[\"courses\"];\r\n                    $payment = $row[\"payment\"];\r\n                    $address = $row[\"address\"];\r\n\r\n\r\n                } else {\r\n                    header(\"location:\" . SITEURL . \"teacher/update-teacher.php\");\r\n                }\r\n            }\r\n\r\n            ?>\r\n\r\n            <form action=\"\" method=\"post\">\r\n                First name: <br>\r\n                <input type=\"text\" name=\"firstname\" placeholder=\"<?php echo $firstname; ?>\" required>\r\n                <br> <br>\r\n                Last name: <br>\r\n                <input type=\"text\" name=\"lastname\" placeholder=\"<?php echo $lastname; ?>\" required>\r\n                <br> <br>\r\n                Username: <br>\r\n                <input type=\"text\" name=\"username\" placeholder=\"<?php echo $username; ?>\" required>\r\n                <br> <br>\r\n                Email: <br>\r\n                <input type=\"email\" name=\"email\" placeholder=\"<?php echo $email; ?>\" required>\r\n                <br> <br>\r\n                Courses: <br>\r\n                <input type=\"text\" name=\"courses\" placeholder=\"<?php echo $courses; ?>\" required>\r\n                <br> <br>\r\n                Payment: <br>\r\n                <input type=\"number\" name=\"payment\" placeholder=\"<?php echo $payment; ?>\" required>\r\n                <br> <br>\r\n                Address: <br>\r\n                <input type=\"text\" name=\"address\" placeholder=\"<?php echo $address; ?>\" required>\r\n                <br> <br>\r\n                <input type=\"hidden\" name=\"id\" value=\"<?php echo $id; ?>\">\r\n                <input type=\"submit\" name=\"submit\" value=\"Update\" class=\"btn-primary\" required>\r\n            </form>\r\n\r\n        </div>\r\n    </div>\r\n\r\n<?php\r\n//get values from form\r\nif (isset($_POST[\"submit\"])) {\r\n    $id = $_POST[\"id\"];\r\n    $firstname = $_POST[\"firstname\"];\r\n    $lastname = $_POST[\"lastname\"];\r\n    $username = $_POST[\"username\"];\r\n    $email = $_POST[\"email\"];\r\n    $courses = $_POST[\"courses\"];\r\n    $payment = $_POST[\"payment\"];\r\n    $address = $_POST[\"address\"];\r\n\r\n//sql query to update\r\n    $sql = \"UPDATE teacher SET\r\n            firstname='$firstname', \r\n            lastname= '$lastname',\r\n            username='$username',\r\n            email='$email',\r\n            courses='$courses',\r\n            payment=$payment,\r\n            address='$address'\r\n            WHERE id ='$id'\";\r\n\r\n    $res = mysqli_query($conn, $sql);\r\n\r\n    if ($res == TRUE) {\r\n        $_SESSION[\"update\"] = \"<div class='success'>Updated successfully</div>\";\r\n    } else {\r\n        $_SESSION[\"update\"] = \"<div class='error'>Error while updating</div>\";\r\n    }\r\n    header(\"location:\" . SITEURL . \"teacher/manage-teacher.php\");\r\n}\r\n?>\r\n\r\n\r\n<?php include(\"partials/footer.php\"); ?>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/teacher/update-teacher.php b/teacher/update-teacher.php
+---- a/teacher/update-teacher.php	(revision c2726e46fc4d4402c2201d50da6c11a7707f9f33)
+-+++ b/teacher/update-teacher.php	(date 1609693637335)
+-@@ -95,5 +95,4 @@
+- }
+- ?>
+- 
+--
+- <?php include("partials/footer.php"); ?>
+-\ No newline at end of file
+-Index: teacher/manage-teacher.php
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?php include(\"partials/menu.php\"); ?>\r\n\r\n    <!-- main section start -->\r\n    <div class=\"main-content\">\r\n        <div class=\"wrapper\">\r\n            <h1> Manage Teacher </h1>\r\n\r\n            <br/>\r\n\r\n            <?php\r\n            if (isset($_SESSION[\"register\"])) {\r\n                echo $_SESSION[\"register\"];\r\n                unset($_SESSION[\"register\"]); //removes message\r\n            }\r\n            if (isset($_SESSION[\"delete\"])) {\r\n                echo $_SESSION[\"delete\"];\r\n                unset($_SESSION[\"delete\"]); //removes message\r\n            }\r\n            if (isset($_SESSION[\"update\"])) {\r\n                echo $_SESSION[\"update\"];\r\n                unset($_SESSION[\"update\"]); //removes message\r\n            }\r\n            if (isset($_SESSION[\"user-not-found\"])) {\r\n                echo $_SESSION[\"user-not-found\"];\r\n                unset($_SESSION[\"user-not-found\"]); //removes message\r\n            }\r\n            if (isset($_SESSION[\"change-pwd\"])) {\r\n                echo $_SESSION[\"change-pwd\"];\r\n                unset($_SESSION[\"change-pwd\"]); //removes message\r\n            }\r\n            if (isset($_SESSION[\"username\"])) {\r\n                $username = $_SESSION[\"username\"];\r\n            }\r\n            ?>\r\n\r\n\r\n            <br/>\r\n            <br/>\r\n            <br/>\r\n\r\n            <table class=\"tbl-full\">\r\n                <tr>\r\n                    <th>Id</th>\r\n                    <th>First name</th>\r\n                    <th>Last name</th>\r\n                    <th>Username</th>\r\n                    <th>Action</th>\r\n                </tr>\r\n                <?php\r\n                $sql = \"SELECT * FROM teacher WHERE username='$username'\";\r\n                $res = mysqli_query($conn, $sql);\r\n\r\n                $sn = 1; // sn to display rather than id\r\n\r\n                if ($res == TRUE) {\r\n                    $count = mysqli_num_rows($res);\r\n\r\n                    if ($count > 0) {\r\n                        $rows = mysqli_fetch_assoc($res);\r\n                        //get data\r\n                        $id = $rows[\"id\"];\r\n                        $firstname = $rows[\"firstname\"];\r\n                        $lastname = $rows[\"lastname\"];\r\n                        $username = $rows[\"username\"];\r\n                    }\r\n                    //display\r\n                    ?>\r\n                    <tr>\r\n                        <td><?php echo $id ?></td>\r\n                        <td><?php echo $firstname ?></td>\r\n                        <td><?php echo $lastname ?></td>\r\n                        <td><?php echo $username ?></td>\r\n                        <td>\r\n                            <a href=\"<?php echo SITEURL; ?>teacher/update-password.php?id=<?php echo $id; ?>\"\r\n                               class=\"btn-primary\">Change Password</a>\r\n                            <a href=\"<?php echo SITEURL; ?>teacher/update-teacher.php?id=<?php echo $id; ?>\"\r\n                               class=\"btn-secondary\">Update</a>\r\n                            <a href=\"<?php echo SITEURL; ?>teacher/delete-teacher.php?id=<?php echo $id; ?>\"\r\n                               class=\"btn-danger\">Delete</a>\r\n                            <a href=\"<?php echo SITEURL; ?>teacher/bookings.php?id=<?php echo $id; ?>\"\r\n                               class=\"btn-booking\">Bookings</a>\r\n                        </td>\r\n                    </tr>\r\n                    <?php\r\n\r\n                }\r\n                ?>\r\n            </table>\r\n\r\n        </div>\r\n    </div>\r\n    <!-- main section end -->\r\n\r\n<?php include(\"partials/footer.php\"); ?>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/teacher/manage-teacher.php b/teacher/manage-teacher.php
+---- a/teacher/manage-teacher.php	(revision c2726e46fc4d4402c2201d50da6c11a7707f9f33)
+-+++ b/teacher/manage-teacher.php	(date 1609693707898)
+-@@ -50,8 +50,6 @@
+-                 $sql = "SELECT * FROM teacher WHERE username='$username'";
+-                 $res = mysqli_query($conn, $sql);
+- 
+--                $sn = 1; // sn to display rather than id
+--
+-                 if ($res == TRUE) {
+-                     $count = mysqli_num_rows($res);
+- 
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/login.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/login.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/register.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/register.php\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"add-search\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1mTjZs9ubmQmglGsJ6KpQ7DwuRt\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1609524533550</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1609524533550</updated>\r\n      <workItem from=\"1609524534653\" duration=\"13236000\" />\r\n      <workItem from=\"1609538560408\" duration=\"3238000\" />\r\n      <workItem from=\"1609576120270\" duration=\"6255000\" />\r\n      <workItem from=\"1609584768092\" duration=\"5259000\" />\r\n      <workItem from=\"1609592145715\" duration=\"1298000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision c2726e46fc4d4402c2201d50da6c11a7707f9f33)
+-+++ b/.idea/workspace.xml	(date 1609694811062)
+-@@ -3,8 +3,8 @@
+-   <component name="ChangeListManager">
+-     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/teacher/manage-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/manage-teacher.php" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -61,7 +61,8 @@
+-       <workItem from="1609538560408" duration="3238000" />
+-       <workItem from="1609576120270" duration="6255000" />
+-       <workItem from="1609584768092" duration="5259000" />
+--      <workItem from="1609592145715" duration="1298000" />
+-+      <workItem from="1609592145715" duration="1989000" />
+-+      <workItem from="1609693593829" duration="1186000" />
+-     </task>
+-     <servers />
+-   </component>
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]/shelved.patch	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ /dev/null	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
+@@ -1,30 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/book-teacher.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/book-teacher.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/index.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/index.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/teacher/register.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/teacher/register.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/teacher/update-teacher.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/teacher/update-teacher.php\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1mTjZs9ubmQmglGsJ6KpQ7DwuRt\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1609524533550</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1609524533550</updated>\r\n      <workItem from=\"1609524534653\" duration=\"13236000\" />\r\n      <workItem from=\"1609538560408\" duration=\"3238000\" />\r\n      <workItem from=\"1609576120270\" duration=\"6255000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision a9cfe905b21d4c8b787029257ca599f1263c858e)
+-+++ b/.idea/workspace.xml	(date 1609583340103)
+-@@ -3,10 +3,6 @@
+-   <component name="ChangeListManager">
+-     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/book-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/book-teacher.php" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/teacher/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/register.php" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -58,7 +54,7 @@
+-       <updated>1609524533550</updated>
+-       <workItem from="1609524534653" duration="13236000" />
+-       <workItem from="1609538560408" duration="3238000" />
+--      <workItem from="1609576120270" duration="6255000" />
+-+      <workItem from="1609576120270" duration="7149000" />
+-     </task>
+-     <servers />
+-   </component>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/book-teacher.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/book-teacher.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/login.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/login.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/register.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/register.php\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/teacher/update-teacher.php\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/teacher/update-teacher.php\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"add-search\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1mTjZs9ubmQmglGsJ6KpQ7DwuRt\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/images\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.detected.package.tslint\" value=\"true\" />\r\n    <property name=\"node.js.path.for.package.eslint\" value=\"project\" />\r\n    <property name=\"node.js.path.for.package.tslint\" value=\"project\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"node.js.selected.package.tslint\" value=\"(autodetect)\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\\images\" />\r\n      <recent name=\"C:\\xampp\\htdocs\\TeacherForYou\" />\r\n      <recent name=\"C:\\xampp\\htdocs\\TeacherForYou\\css\" />\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Programs\\Xampp\\htdocs\\TeacherForYou\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"21c8ad03-c990-4b46-af80-d4a82e091fc6\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1609524533550</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1609524533550</updated>\r\n      <workItem from=\"1609524534653\" duration=\"13236000\" />\r\n      <workItem from=\"1609538560408\" duration=\"3238000\" />\r\n      <workItem from=\"1609576120270\" duration=\"6255000\" />\r\n      <workItem from=\"1609584768092\" duration=\"5259000\" />\r\n      <workItem from=\"1609592145715\" duration=\"1298000\" />\r\n      <workItem from=\"1609593741271\" duration=\"4848000\" />\r\n      <workItem from=\"1609598693400\" duration=\"16400000\" />\r\n      <workItem from=\"1609684248459\" duration=\"5082000\" />\r\n      <workItem from=\"1609778067271\" duration=\"10407000\" />\r\n      <workItem from=\"1609831564528\" duration=\"1310000\" />\r\n      <workItem from=\"1609857314085\" duration=\"1261000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision f0b4fa1ae5eba63efb0f37fbccd4b112a9ed9d00)
++++ b/.idea/workspace.xml	(date 1610352312152)
+@@ -2,10 +2,16 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="21c8ad03-c990-4b46-af80-d4a82e091fc6" name="Default Changelist" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02-Jan-21_12_29_PM__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03-Jan-21_11_28_PM__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_03-Jan-21_11_28_PM__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_03-Jan-21_7_26_PM__Default_Changelist_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/book-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/book-teacher.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/teacher/delete-booking.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/delete-booking.php" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/teacher/update-teacher.php" beforeDir="false" afterPath="$PROJECT_DIR$/teacher/update-teacher.php" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -77,7 +83,8 @@
+       <workItem from="1609684248459" duration="5082000" />
+       <workItem from="1609778067271" duration="10407000" />
+       <workItem from="1609831564528" duration="1310000" />
+-      <workItem from="1609857314085" duration="1261000" />
++      <workItem from="1609857314085" duration="3113000" />
++      <workItem from="1610351041235" duration="1252000" />
+     </task>
+     <servers />
+   </component>
