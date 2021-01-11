@@ -23,5 +23,5 @@ if ($res2 == TRUE) {
 } else {
     $_SESSION['delete-booking'] = "<div class='error'>Error while deleting </div>";
 }
-header("location:" . SITEURL . "teacher/bookings.php?id=$teacher_id");
+echo("<script>location.href = '" . SITEURL . "teacher/bookings.php?id=$teacher_id';</script>");
 ?>
